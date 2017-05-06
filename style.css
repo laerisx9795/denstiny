@@ -4,6 +4,7 @@ body {
     background-size: cover;
     text-align: center;
     color: #3A0088;
+    font-family: 'Abril Fatface', cursive;
 }
 
 .buttons{
@@ -25,7 +26,6 @@ body {
     border-radius: 15px; 
     -webkit-border-radius: 15px; 
     -moz-border-radius: 15px; 
-    width:140px;
     height:50px;
     border-width:1px;
     border-style:solid;
