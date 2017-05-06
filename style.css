@@ -19,3 +19,15 @@ body {
     border-style:solid;
     border-color:#0066FF;
 }
+
+.inputs{
+  background: rgba(0%,0%,0%,0.005);
+    border-radius: 15px; 
+    -webkit-border-radius: 15px; 
+    -moz-border-radius: 15px; 
+    width:140px;
+    height:50px;
+    border-width:1px;
+    border-style:solid;
+    border-color:#0066FF;
+}
