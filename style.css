@@ -8,11 +8,12 @@ body {
 .buttons{
     /*background-color:#FFFFFF;
     opacity: 30;*/
-    background: rgba(0%,0%,0%,0.3);
+    background: rgba(0%,0%,0%,0.6);
     border-radius: 15px; 
     -webkit-border-radius: 15px; 
     -moz-border-radius: 15px; 
     width:140px;
     height:50px;
-    border:2px #0066FF;
+    border:2px;
+    border-color:#0066FF;
 }
