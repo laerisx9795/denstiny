@@ -12,4 +12,7 @@ body {
     border-radius: 15px; 
     -webkit-border-radius: 15px; 
     -moz-border-radius: 15px; 
+    width:140px;
+    height:50px;
+    border:2px #0066FF;
 }
