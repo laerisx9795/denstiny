@@ -1,9 +1,3 @@
-var fdb = new ForerunnerDB();
-var db = fdb.db("SR");
-var scoreCollection = db.collection('score');
-var studentCollection = db.collection('student');
-studentCollection.save();
-studentCollection.load();
 function show(){
   for(var i=0;i<studentCollection.find().length;i++){
     $("tbody").text("");
