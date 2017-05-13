@@ -41,12 +41,6 @@
 	      meridians: false,
 	      format: 'HH:mm',
       });
-      var fdb = new ForerunnerDB();
-      var db = fdb.db("SR");
-      var englishScoreCollection = db.collection('score');
-      var studentCollection = db.collection('student');
-      studentCollection.save();
-      studentCollection.load();
     </script>
   </body>
 </html>
