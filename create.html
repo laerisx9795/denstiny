@@ -25,18 +25,6 @@
     <input type="text" class="inputs" id="score"/><br>
     <br>
     <button class="buttons" id="record">Record</button>
-    <table>
-      <thead>
-	<tr>
-          <td>Subject</td>
-	  <td>Test Date</td>
-	  <td>Type</td>
-	  <td>Score Input</td>
-	</tr>
-      </thead>
-      <tbody>
-      </tbody>
-    </table>
     <script>
       $("#pickdate").dateDropper({
 	      animate: false,
@@ -52,16 +40,6 @@
       var scoreCollection = db.collection('score');
       var studentCollection = db.collection('student');
       scoreCollection.load();
-      $("table").hide();
-      function scoreShow(){
-      	$("tbody").text("");
-      	$("table").show();
-      	for(var i=0;i<scoreCollection.find().length;i++){
-          var score = "<tr><td>"+scoreCollection.find()[i].Subject+"</td><td>"+scoreCollection.find()[i].Date+"</td><td>"+scoreCollection.find()[i].Type+"</td><td>"+scoreCollection.find()[i].Score+"</td></tr>";
-          $("tbody").append(score);
-      	}
-      }
-      $("#record").on("click",scoreShow);
       function scoreRecord(){
       	var newData = {
           Subject:$("input#subjectName").val(),
