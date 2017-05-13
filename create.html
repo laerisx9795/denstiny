@@ -19,6 +19,8 @@
     <input type="text" class="inputs" id="subjectName"/>
     <h4>Test Date:</h4>
     <input type="text" class="inputs" id="pickdate" readonly="readonly"/>
+    <h4>No.</h4>
+    <input type="text" class="inputs" id="number"/>
     <h4>Score Input:</h4>
     <input type="text" class="inputs" id="score"/><br>
     <br>
@@ -41,6 +43,7 @@
       	var newData = {
           Subject:$("input#subjectName").val(),
           Date:$("input#pickdate").val(),
+	  Number:$("input#number").val(),
           Score:$("input#score").val()
         };
         scoreCollection.insert(newData);
@@ -48,6 +51,7 @@
         console.log("Recored");
         $("input#subjectName").val("");
         $("input#pickdate").val("");
+        $("input#number").val("");
         $("input#score").val("");
       }
         $("#record").on("click",scoreRecord);
