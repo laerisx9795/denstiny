@@ -20,7 +20,7 @@
     <h4>Test Date:</h4>
     <input type="text" class="inputs" id="pickdate" readonly="readonly"/>
     <h4>Score Input:</h4>
-    <input type="text" class="inputs" id="score"/>
+    <input type="text" class="inputs" id="score"/><br>
     <button class="buttons" id="record">Record</button>
     <script>
       $("#pickdate").dateDropper({
@@ -40,14 +40,14 @@
       	var newData = {
           Subject:$("input#subjectName").val(),
           Date:$("input#pickdate").val(),
-          Score:$("input#score").val(),
+          Score:$("input#score").val()
         };
         scoreCollection.insert(newData);
         scoreCollection.save();
         console.log("Recored");
-        $("input#subjectName").val(""),
-        $("input#pickdate").val(""),
-        $("input#score").val(""),
+        $("input#subjectName").val("");
+        $("input#pickdate").val("");
+        $("input#score").val("");
       }
         $("#record").on("click",haroCreate);
     </script>
