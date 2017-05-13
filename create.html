@@ -44,7 +44,7 @@
 	      format: 'HH:mm',
       });
       studentCollection.load(
-      function show(){
+      function(){
   	for(var i=0;i<studentCollection.find().length;i++){
     	  $("tbody").text("");
 	  var name = "<tr><td>"+studentCollection.find().number+"</td><td><input type='text' class='inputs'></td></tr>";
