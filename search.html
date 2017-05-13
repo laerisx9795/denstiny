@@ -37,10 +37,10 @@
       function scoreSearch(){
       	$("tbody").text("");
       	$("table").show();
-        var result=scoreCollection.find{
+        var result=scoreCollection.find(
           {},
           { $orderBy: {date: -1}, $limit: 10}
-        };
+        );
         for(var i=0;i<scoreCollection.find(result).length;i++){
           var score = "<tr><td>"+scoreCollection.find(result)[i].Subject+"</td><td>"+scoreCollection.find(result)[i].Date+"</td><td>"+scoreCollection.find(result)[i].Type+"</td><td>"+scoreCollection.find(result)[i].Score+"</td></tr>";
           $("tbody").append(score);
