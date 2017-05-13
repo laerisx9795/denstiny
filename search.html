@@ -1,1 +1,53 @@
-
+<html>
+  <head>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta charset="UTF-8">
+    <script src="js/main.js"></script>
+    <script src="js/fdb-all.min.js"></script>
+    <title>Score Recorder</title>
+  </head>
+  <body>
+    <h2>Search</h2>
+    <h4>Subject:</h4>
+    <input type="text" class="inputs" id="subjectName"/>
+    <h4>Test Date:</h4>
+    <input type="text" class="inputs" id="pickdate1" readonly="readonly"/>
+    <h4>Type:</h4>
+    <input type="text" class="inputs" id="type"/><br><br>
+    <button class="buttons" id="search">Search</button><br><br>
+    <table>
+      <thead>
+	      <tr>
+          <td>Subject</td>
+	        <td>Test Date</td>
+	        <td>Type</td>
+	        <td>Score Input</td>
+	      </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+    <script>
+      scoreCollection.load();
+      $("table").hide();
+      function scoreSearch(){
+      	$("tbody").text("");
+      	$("table").show();
+        var result=scoreCollection.find{
+          {},
+          { $orderBy: {date: -1}, $limit: 10}
+        };
+        for(var i=0;i<scoreCollection.find(result).length;i++){
+          var score = "<tr><td>"+scoreCollection.find(result)[i].Subject+"</td><td>"+scoreCollection.find(result)[i].Date+"</td><td>"+scoreCollection.find(result)[i].Type+"</td><td>"+scoreCollection.find(result)[i].Score+"</td></tr>";
+          $("tbody").append(score);
+      	}
+      }
+      $("#search").on("click",scoreSearch);
+      
+    </script>
+  </body>
+</html>
