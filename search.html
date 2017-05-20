@@ -49,7 +49,7 @@
       var scoreCollection = db.collection('score');
       scoreCollection.load();
       $("table").hide();
-      function scoreSearchDate(){
+      /*function scoreSearchDate(){
       	$("tbody").text("");
       	$("table").show();
         var result=scoreCollection.find(
@@ -60,23 +60,24 @@
           var score = "<tr><td>"+scoreCollection.find(result)[i].Subject+"</td><td>"+scoreCollection.find(result)[i].Date+"</td><td>"+scoreCollection.find(result)[i].Type+"</td><td>"+scoreCollection.find(result)[i].Score+"</td></tr>";
           $("tbody").append(score);
       	}
-      }
+      }*/
       function scoreSearchSubject(){
       	var query = {
           Subject: $("#subjectName").val()
       	};
       	result = scoreCollection.find(query);
       	$("tbody").text("");
+	$("table").show();
       	for(var i = 0; i<result.length;i++){
           var score = "<tr><td>"+scoreCollection.find(result)[i].Subject+"</td><td>"+scoreCollection.find(result)[i].Date+"</td><td>"+scoreCollection.find(result)[i].Type+"</td><td>"+scoreCollection.find(result)[i].Score+"</td></tr>";
           $("tbody").append(score);
         }
       }
-      if($("#pickdate1").val()*1 != " "){
+      /*if($("#pickdate1").val()*1 != " "){
         $("#search").on("click", scoreSearchDate);
-      }else{
+      }else{*/
 	$("#search").on("click", scoreSearchSubject);
-      }
+      //}
     </script>
   </body>
 </html>
