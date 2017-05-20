@@ -66,9 +66,9 @@
           var nextMonth = month+1;
 	  var year = date.getFullYear();
 	  if(month < 10)
-	    var month = "0"+month;
+	    month = "0"+month;
 	  if(nextMonth < 10)
-	    var month = "0"+nextMonth;
+	    nextMonth = "0"+nextMonth;
 	  query={
 	    Date:{
 	    	  "$gte":year+"-"+month+"-0"+1,
