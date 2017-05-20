@@ -18,11 +18,11 @@
     <h4>Subject:</h4>
     <input type="text" class="inputs" id="subjectName"/>
     <h4>Test Date:</h4>
-    <input type="text" class="inputs" id="pickdate1" readonly="readonly"/>
+    <input type="text" class="inputs" id="pickdate1" readonly="readonly"/><h4>～</h4><input type="text" class="inputs" id="pickdate2" readonly="readonly"/>
     <h4>Type:</h4>
     <input type="text" class="inputs" id="type"/><br><br>
     <button class="buttons" id="search">Search</button><br><br>
-    <table>
+    <table  style="border:3px #FFD382 dashed;">
       <thead>
 	<tr>
           <td>Subject</td>
@@ -42,9 +42,10 @@
 	      format: 'Y-m-d',
 	      maxYear: '2020'
       });
-      $("#picktime").timeDropper({
-	      meridians: false,
-	      format: 'HH:mm',
+      $("#pickdate2").dateDropper({
+	      animate: false,
+	      format: 'Y-m-d',
+	      maxYear: '2020'
       });
       var fdb = new ForerunnerDB();
       var db = fdb.db("SR");
@@ -54,8 +55,11 @@
       function scoreSearchDate(){
       	$("tbody").text("");
       	$("table").show();
-	var result = {
-	  Date:$("#pickdate1").val()
+	var result={
+	  Date: {
+                    "$gt": $("#pickdate1").val() ,
+                    "$lt": $("#pickdate2").val()
+                  }
 	};
         /*var result=scoreCollection.find(
           {},
