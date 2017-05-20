@@ -71,8 +71,8 @@
 	    var month = "0"+nextMonth;
 	  query={
 	    Date:{
-	    	  "$gte":year+"-"+month+"-0"+"1",
-		  "$lt":year+"-"+nextMonth+"-0"+"1"
+	    	  "$gte":year+"-"+month+"-0"+1,
+		  "$lt":year+"-"+nextMonth+"-0"+1
 	    }
 	  };
           for(var i=0;i<scoreCollection.find(query).length;i++){
