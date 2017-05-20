@@ -57,8 +57,8 @@
       	$("table").show();
 	var query={
 	  Date: {
-                    "$gt": $("#pickdate1").val() ,
-                    "$lt": $("#pickdate2").val()
+                    "$gte": $("#pickdate1").val() ,
+                    "$lte": $("#pickdate2").val()
                 }
 	};
         /*var result=scoreCollection.find(
