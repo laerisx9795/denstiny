@@ -49,19 +49,22 @@
       var scoreCollection = db.collection('score');
       scoreCollection.load();
       $("table").hide();
-      /*function scoreSearchDate(){
+      function scoreSearchDate(){
       	$("tbody").text("");
       	$("table").show();
-        var result=scoreCollection.find(
+	var result = {
+	  Date:$("#pickdate1").val()
+	};
+        /*var result=scoreCollection.find(
           {},
           { $orderBy: {date: -1}, $limit: 10}
-        );
+        );*/
         for(var i=0;i<scoreCollection.find(result).length;i++){
           var score = "<tr><td>"+scoreCollection.find(result)[i].Subject+"</td><td>"+scoreCollection.find(result)[i].Date+"</td><td>"+scoreCollection.find(result)[i].Type+"</td><td>"+scoreCollection.find(result)[i].Score+"</td></tr>";
           $("tbody").append(score);
       	}
-      }*/
-      function scoreSearchSubject(){
+      }
+      /*function scoreSearchSubject(){
       	var query = {
           Subject: $("#subjectName").val()
       	};
@@ -73,10 +76,10 @@
           $("tbody").append(score);
         }
       }
-      /*if($("#pickdate1").val()*1 != " "){
+      if($("#pickdate1").val()*1 != " "){*/
         $("#search").on("click", scoreSearchDate);
-      }else{*/
-	$("#search").on("click", scoreSearchSubject);
+      //}else{
+	//$("#search").on("click", scoreSearchSubject);
       //}
     </script>
   </body>
