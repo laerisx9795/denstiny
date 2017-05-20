@@ -70,11 +70,11 @@
 	  if(nextMonth < 10)
 	    nextMonth = "0"+nextMonth;
 	  query={
-	    Date:{
-	    	  "$gte":year+"-"+month+"-0"+1,
+	    Date: {
+	    	  "$gte":year+"-"+month+"-0"+1 ,
 		  "$lt":year+"-"+nextMonth+"-0"+1
 	    },
-	    {{ $orderBy: {date: -1}}
+	    { $orderBy: {date: -1}}
 	  };
           for(var i=0;i<scoreCollection.find(query).length;i++){
             var score = "<tr><td>"+scoreCollection.find(query)[i].Subject+"</td><td>"+scoreCollection.find(query)[i].Date+"</td><td>"+scoreCollection.find(query)[i].Type+"</td><td>"+scoreCollection.find(query)[i].Score+"</td></tr>";
@@ -85,15 +85,14 @@
 	     Date: {
                     "$gte": $("#pickdate1").val() ,
                     "$lte": $("#pickdate2").val()
-                },
+                }
+	   };
+	   query2={
 	     { $orderBy: {date: -1}}
 	   };
-        /*var result=scoreCollection.find(
-          {},
-          { $orderBy: {date: -1}, $limit: 10}
-        );*/
-          for(var i=0;i<scoreCollection.find(query).length;i++){
-            var score = "<tr><td>"+scoreCollection.find(query)[i].Subject+"</td><td>"+scoreCollection.find(query)[i].Date+"</td><td>"+scoreCollection.find(query)[i].Type+"</td><td>"+scoreCollection.find(query)[i].Score+"</td></tr>";
+        var result=scoreCollection.find(query,query2);
+          for(var i=0;i<scoreCollection.find(result).length;i++){
+            var score = "<tr><td>"+scoreCollection.find(result)[i].Subject+"</td><td>"+scoreCollection.find(result)[i].Date+"</td><td>"+scoreCollection.find(result)[i].Type+"</td><td>"+scoreCollection.find(result)[i].Score+"</td></tr>";
             $("tbody").append(score);
       	  }
         }else{
