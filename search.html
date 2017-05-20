@@ -35,6 +35,7 @@
       </tbody>
     </table>
     <script>
+      var db = fdb.db("SR");
       var scoreCollection = db.collection('score');
       scoreCollection.load();
       $("table").hide();
