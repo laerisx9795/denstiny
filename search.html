@@ -18,7 +18,11 @@
     <h4>Subject:</h4>
     <input type="text" class="inputs" id="subjectName"/>
     <h4>Test Date:</h4>
-    <input type="text" class="inputs" id="pickdate1" readonly="readonly"/><h4>～</h4><input type="text" class="inputs" id="pickdate2" readonly="readonly"/>
+    <div>
+      <label><input type="radio" name="time" value=0/><h4>本月</h4></label>
+      <input type="radio" name="time" value=1/>
+      <input type="text" class="inputs" id="pickdate1" readonly="readonly"/><h4>～</h4><input type="text" class="inputs" id="pickdate2" readonly="readonly"/>
+    </div>
     <h4>Type:</h4>
     <input type="text" class="inputs" id="type"/><br><br>
     <button class="buttons" id="search">Search</button><br><br>
@@ -53,23 +57,51 @@
       scoreCollection.load();
       $("table").hide();
       function scoreSearchDate(){
-      	$("tbody").text("");
+	$("tbody").text("");
       	$("table").show();
-	var query={
-	  Date: {
+	var query;
+	if(document.getElementById("time")==0){
+	  var date = new Date();
+	  var month = date.getMonth()+1;
+          var nextMonth = month+1;
+	  if(month < 10)
+	    var month = "0"+month;
+	  if(nextMonth < 10)
+	    var month = "0"+nextMonth;
+	  query={
+	    Date:{
+	    	  "$gte":year+"-"+month+"-"+"1",
+		  "$lt":year+"-"+nextMonth+"-"+"1"
+	    }
+	  };
+          for(var i=0;i<scoreCollection.find(query).length;i++){
+            var score = "<tr><td>"+scoreCollection.find(query)[i].Subject+"</td><td>"+scoreCollection.find(query)[i].Date+"</td><td>"+scoreCollection.find(query)[i].Type+"</td><td>"+scoreCollection.find(query)[i].Score+"</td></tr>";
+            $("tbody").append(score);
+      	  }
+	}else if(document.getElementById("time")==1){
+	   query={
+	     Date: {
                     "$gte": $("#pickdate1").val() ,
                     "$lte": $("#pickdate2").val()
                 }
-	};
+	   };
         /*var result=scoreCollection.find(
           {},
           { $orderBy: {date: -1}, $limit: 10}
         );*/
-        for(var i=0;i<scoreCollection.find(query).length;i++){
-          var score = "<tr><td>"+scoreCollection.find(query)[i].Subject+"</td><td>"+scoreCollection.find(query)[i].Date+"</td><td>"+scoreCollection.find(query)[i].Type+"</td><td>"+scoreCollection.find(query)[i].Score+"</td></tr>";
-          $("tbody").append(score);
-      	}
+          for(var i=0;i<scoreCollection.find(query).length;i++){
+            var score = "<tr><td>"+scoreCollection.find(query)[i].Subject+"</td><td>"+scoreCollection.find(query)[i].Date+"</td><td>"+scoreCollection.find(query)[i].Type+"</td><td>"+scoreCollection.find(query)[i].Score+"</td></tr>";
+            $("tbody").append(score);
+      	  }
+        }else{
+	  for(var i=0;i<scoreCollection.find().length;i++){
+            var score = "<tr><td>"+scoreCollection.find(query)[i].Subject+"</td><td>"+scoreCollection.find(query)[i].Date+"</td><td>"+scoreCollection.find(query)[i].Type+"</td><td>"+scoreCollection.find(query)[i].Score+"</td></tr>";
+            $("tbody").append(score);
+      	  }
+	}
       }
+      	
+	
       /*function scoreSearchSubject(){
       	var query = {
           Subject: $("#subjectName").val()
