@@ -61,8 +61,22 @@
           $("tbody").append(score);
       	}
       }
-      $("#search").on("click",scoreSearchDate);
-      
+      function scoreSearchSubject(){
+      	var query = {
+          Subject: $("#subjectName").val()
+      	};
+      	result = scoreCollection.find(query);
+      	$("tbody").text("");
+      	for(var i = 0; i<result.length;i++){
+          var score = "<tr><td>"+scoreCollection.find(result)[i].Subject+"</td><td>"+scoreCollection.find(result)[i].Date+"</td><td>"+scoreCollection.find(result)[i].Type+"</td><td>"+scoreCollection.find(result)[i].Score+"</td></tr>";
+          $("tbody").append(score);
+        }
+      }
+      if($("#subjectName").val() != " "){
+        $("#search").on("click", scoreSearchSubject);
+      }else{
+        $("#search").on("click", scoreSearchDate);
+      }
     </script>
   </body>
 </html>
