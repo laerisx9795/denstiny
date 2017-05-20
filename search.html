@@ -55,18 +55,18 @@
       function scoreSearchDate(){
       	$("tbody").text("");
       	$("table").show();
-	var result={
+	var query={
 	  Date: {
-                    "$gt": Date.parse($("#pickdate1").val()).valueOf() ,
-                    "$lt": Date.parse($("#pickdate2").val()).valueOf()
-                  }
+                    "$gt": $("#pickdate1").val() ,
+                    "$lt": $("#pickdate2").val()
+                }
 	};
         /*var result=scoreCollection.find(
           {},
           { $orderBy: {date: -1}, $limit: 10}
         );*/
-        for(var i=0;i<scoreCollection.find(result).length;i++){
-          var score = "<tr><td>"+scoreCollection.find(result)[i].Subject+"</td><td>"+scoreCollection.find(result)[i].Date+"</td><td>"+scoreCollection.find(result)[i].Type+"</td><td>"+scoreCollection.find(result)[i].Score+"</td></tr>";
+        for(var i=0;i<scoreCollection.find(query).length;i++){
+          var score = "<tr><td>"+scoreCollection.find(query)[i].Subject+"</td><td>"+scoreCollection.find(query)[i].Date+"</td><td>"+scoreCollection.find(query)[i].Type+"</td><td>"+scoreCollection.find(query)[i].Score+"</td></tr>";
           $("tbody").append(score);
       	}
       }
