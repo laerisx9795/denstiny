@@ -72,10 +72,10 @@
           $("tbody").append(score);
         }
       }
-      if($("#subjectName").val() != " "){
-        $("#search").on("click", scoreSearchSubject);
-      }else{
+      if($("#pickdate1").val()*1 != " "){
         $("#search").on("click", scoreSearchDate);
+      }else{
+	$("#search").on("click", scoreSearchSubject);
       }
     </script>
   </body>
