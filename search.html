@@ -35,6 +35,15 @@
       </tbody>
     </table>
     <script>
+      $("#pickdate").dateDropper({
+	      animate: false,
+	      format: 'Y-m-d',
+	      maxYear: '2020'
+      });
+      $("#picktime").timeDropper({
+	      meridians: false,
+	      format: 'HH:mm',
+      });
       var fdb = new ForerunnerDB();
       var db = fdb.db("SR");
       var scoreCollection = db.collection('score');
