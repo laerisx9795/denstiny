@@ -74,23 +74,23 @@
 	    	  "$gte":year+"-"+month+"-0"+1 ,
 		  "$lt":year+"-"+nextMonth+"-0"+1
 	    },
-	    { $orderBy: {date: -1}}
+	    { $orderBy: {date: -1}
 	  };
           for(var i=0;i<scoreCollection.find(query).length;i++){
             var score = "<tr><td>"+scoreCollection.find(query)[i].Subject+"</td><td>"+scoreCollection.find(query)[i].Date+"</td><td>"+scoreCollection.find(query)[i].Type+"</td><td>"+scoreCollection.find(query)[i].Score+"</td></tr>";
             $("tbody").append(score);
       	  }
 	}else if($("input#thisMonth:checked").length == 0 && $("input#period:checked").length != 0){
-	   query={
+	   var query1={
 	     Date: {
                     "$gte": $("#pickdate1").val() ,
                     "$lte": $("#pickdate2").val()
                 }
 	   };
-	   query2={
+	   var query2={
 	     { $orderBy: {date: -1}}
 	   };
-        var result=scoreCollection.find(query,query2);
+        var result=scoreCollection.find(query1,query2);
           for(var i=0;i<scoreCollection.find(result).length;i++){
             var score = "<tr><td>"+scoreCollection.find(result)[i].Subject+"</td><td>"+scoreCollection.find(result)[i].Date+"</td><td>"+scoreCollection.find(result)[i].Type+"</td><td>"+scoreCollection.find(result)[i].Score+"</td></tr>";
             $("tbody").append(score);
