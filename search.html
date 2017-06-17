@@ -74,7 +74,7 @@
 		var subject=["國文","英文","數學","電子學","基本電學","基本電學實習","數位邏輯"];
 		var totalScore =0;
 	    var query;
-	    if($("input#thisMonth:checked").length != 0 && $("input#period:checked").length == 0){
+	if($("input#thisMonth:checked").length != 0 && $("input#period:checked").length == 0){
 	      var date = new Date();
 	      var month = date.getMonth()+1;
           var nextMonth = month+1;
@@ -88,11 +88,11 @@
 	    	  "$gte":year+"-"+month+"-0"+1 ,
 		  	  "$lt":year+"-"+nextMonth+"-0"+1
 	    	}
-	  	  };
+	  	  };//query
           for(var i=0;i<scoreCollection.find(query).length;i++){
             var score = "<tr><td>"+scoreCollection.find(query)[i].Subject+"</td><td>"+scoreCollection.find(query)[i].Date+"</td><td>"+scoreCollection.find(query)[i].Type+"</td><td>"+scoreCollection.find(query)[i].Score+"</td></tr>";
             $("tbody").append(score);
-		  }	  
+		  	  
 		  switch(scoreCollection.find(query)[i].Subject){
 			case "國文" :
 				this.sum[0] += scoreCollection.find(query)[i].Score/1;
@@ -115,28 +115,28 @@
 			default :
 				this.sum[6] += scoreCollection.find(query)[i].Score/1;
 				break;	
-		  }
+		  }//switch
 			totalScore += scoreCollection.find(query)[i].Score/1;
+	  }//for
 			for(var i =0;i<sum.length;i++){  
 				var percent = "<tr><td>"+subject[i]+"</td><td>"+sum[i]+"</td><td>"+Math.floor((sum[i]/totalScore)*100)+"%</td></tr>";
-            	$("tbody#scorePercent").append(percent);
-			}
-		}else{
-			if($("input#thisMonth:checked").length == 0 && $("input#period:checked").length != 0){
+            			$("tbody#scorePercent").append(percent);
+			}//for
+	}else{
+		if($("input#thisMonth:checked").length == 0 && $("input#period:checked").length != 0){
 	          var query1={
 	     	 Date: {
                     "$gte": $("#pickdate1").val() ,
                     "$lte": $("#pickdate2").val()
                 }
-	   		 };
+	   		 };//query
 	   	      var query2={
 	      	 { $orderBy: {date: -1}}
-	   	   };
+	   	   };//query
               var result=scoreCollection.find(query1,query2);
             for(var i=0;i<scoreCollection.find(result).length;i++){
               var score = "<tr><td>"+scoreCollection.find(result)[i].Subject+"</td><td>"+scoreCollection.find(result)[i].Date+"</td><td>"+scoreCollection.find(result)[i].Type+"</td><td>"+scoreCollection.find(result)[i].Score+"</td></tr>";
               $("tbody").append(score);
-      	    }
 		    switch(scoreCollection.find(query)[i].Subject){
 			case "國文" :
 				this.sum[0] += scoreCollection.find(query)[i].Score/1;
@@ -159,17 +159,17 @@
 			default :
 				this.sum[6] += scoreCollection.find(query)[i].Score/1;
 				break;	
-		  }
+		  }//switch
 			totalScore += scoreCollection.find(query)[i].Score/1;
+	    }//for
 			for(var i =0;i<sum.length;i++){  
 				var percent = "<tr><td>"+subject[i]+"</td><td>"+sum[i]+"</td><td>"+Math.floor((sum[i]/totalScore)*100)+"%</td></tr>";
-            	$("tbody#scorePercent").append(percent);
-			}
-            }else{
+            			$("tbody#scorePercent").append(percent);
+			}//for
+            	}else{
 	  		  for(var i=0;i<scoreCollection.find({ $orderBy: {date: -1}}).length;i++){
             	var score = "<tr><td>"+scoreCollection.find(query)[i].Subject+"</td><td>"+scoreCollection.find(query)[i].Date+"</td><td>"+scoreCollection.find(query)[i].Type+"</td><td>"+scoreCollection.find(query)[i].Score+"</td></tr>";
             	$("tbody").append(score);
-      	      }
 				switch(scoreCollection.find(query)[i].Subject){
 			case "國文" :
 				this.sum[0] += scoreCollection.find(query)[i].Score/1;
@@ -192,15 +192,16 @@
 			default :
 				this.sum[6] += scoreCollection.find(query)[i].Score/1;
 				break;	
-		  }
+		  }//switch
 			totalScore += scoreCollection.find(query)[i].Score/1;
+		}//for
 			for(var i =0;i<sum.length;i++){  
 				var percent = "<tr><td>"+subject[i]+"</td><td>"+sum[i]+"</td><td>"+Math.floor((sum[i]/totalScore)*100)+"%</td></tr>";
-            	$("tbody#scorePercent").append(percent);
-			}
-		    }
-       }
-	}
+            			$("tbody#scorePercent").append(percent);
+			}//for
+		}//else
+       }//else
+  }//function
       	
 	
       /*function scoreSearchSubject(){
