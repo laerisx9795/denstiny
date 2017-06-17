@@ -73,8 +73,7 @@
 	    Date: {
 	    	  "$gte":year+"-"+month+"-0"+1 ,
 		  "$lt":year+"-"+nextMonth+"-0"+1
-	    },
-	    { $orderBy: date: -1}
+	    }
 	  };
           for(var i=0;i<scoreCollection.find(query).length;i++){
             var score = "<tr><td>"+scoreCollection.find(query)[i].Subject+"</td><td>"+scoreCollection.find(query)[i].Date+"</td><td>"+scoreCollection.find(query)[i].Type+"</td><td>"+scoreCollection.find(query)[i].Score+"</td></tr>";
