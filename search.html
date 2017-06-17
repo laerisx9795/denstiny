@@ -70,8 +70,8 @@
       function scoreSearchDate(){
 	    $("tbody").text("");
       	$("table").show();
-		var sum={0,0,0,0,0,0,0};
-		var subject={"國文","英文","數學","電子學","基本電學","基本電學實習","數位邏輯"};
+		var sum=[0,0,0,0,0,0,0];
+		var subject=["國文","英文","數學","電子學","基本電學","基本電學實習","數位邏輯"];
 		var totalScore =0;
 	    var query;
 	    if($("input#thisMonth:checked").length != 0 && $("input#period:checked").length == 0){
