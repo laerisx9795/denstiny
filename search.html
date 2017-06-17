@@ -32,12 +32,23 @@
           <td>Subject</td>
 	  <td>Test Date</td>
 	  <td>Type</td>
-	  <td>Score Input</td>
+	  <td>Score</td>
 	</tr>
       </thead>
       <tbody>
       </tbody>
     </table>
+	 <table>
+		 <thead>
+			 <tr>
+				 <td>Subject</td>
+				 <td>Score</td>
+				 <td>Percent</td>
+			 </tr>
+		 </thead>
+		 <tbody id="scorePercent">
+		 </tbody>
+	  </table>
     <br><br><br><br>
     <button class="buttons" id="home"><a href="index.html">Go Back to Home</a></button>  
     <script>
@@ -57,50 +68,139 @@
       scoreCollection.load();
       $("table").hide();
       function scoreSearchDate(){
-	$("tbody").text("");
+	    $("tbody").text("");
       	$("table").show();
-	var query;
-	if($("input#thisMonth:checked").length != 0 && $("input#period:checked").length == 0){
-	  var date = new Date();
-	  var month = date.getMonth()+1;
+		var sum={0,0,0,0,0,0,0};
+		var subject={"國文","英文","數學","電子學","基本電學","基本電學實習","數位邏輯"};
+		var totalScore =0;
+	    var query;
+	    if($("input#thisMonth:checked").length != 0 && $("input#period:checked").length == 0){
+	      var date = new Date();
+	      var month = date.getMonth()+1;
           var nextMonth = month+1;
-	  var year = date.getFullYear();
-	  if(month < 10)
-	    month = "0"+month;
-	  if(nextMonth < 10)
-	    nextMonth = "0"+nextMonth;
-	  query={
-	    Date: {
+	  	  var year = date.getFullYear();
+	  	  if(month < 10)
+	    	month = "0"+month;
+	  	  if(nextMonth < 10)
+	    	nextMonth = "0"+nextMonth;
+	  	  query={
+	    	Date: {
 	    	  "$gte":year+"-"+month+"-0"+1 ,
-		  "$lt":year+"-"+nextMonth+"-0"+1
-	    }
-	  };
+		  	  "$lt":year+"-"+nextMonth+"-0"+1
+	    	}
+	  	  };
           for(var i=0;i<scoreCollection.find(query).length;i++){
             var score = "<tr><td>"+scoreCollection.find(query)[i].Subject+"</td><td>"+scoreCollection.find(query)[i].Date+"</td><td>"+scoreCollection.find(query)[i].Type+"</td><td>"+scoreCollection.find(query)[i].Score+"</td></tr>";
             $("tbody").append(score);
-      	  }
-	}else if($("input#thisMonth:checked").length == 0 && $("input#period:checked").length != 0){
-	   var query1={
-	     Date: {
+		  }	  
+		  switch(scoreCollection.find(query)[i].Subject){
+			case "國文" :
+				this.sum[0] += scoreCollection.find(query)[i].Score/1;
+				break;
+			case "英文" :
+				this sum[1] += scoreCollection.find(query)[i].Score/1;
+				break;
+			case "數學" :
+				this sum[2] += scoreCollection.find(query)[i].Score/1;
+				break;
+			case "電子學" :
+				this sum[3] += scoreCollection.find(query)[i].Score/1;
+				break;
+			case "基本電學" :
+				this.sum[4] += scoreCollection.find(query)[i].Score/1;
+				break;
+			case "基本電學實習" :
+				this.sum[5] += scoreCollection.find(query)[i].Score/1;
+				break;
+			default :
+				this.sum[6] += scoreCollection.find(query)[i].Score/1;
+				break;	
+		  }
+			totalScore += scoreCollection.find(query)[i].Score/1;
+			for(var i =0;i<sum.length;i++){  
+				var percent = "<tr><td>"+subject[i]+"</td><td>"+sum[i]+"</td><td>"+Math.floor((sum[i]/totalScore)*100)+"%</td></tr>";
+            	$("tbody#scorePercent").append(percent);
+			}
+		}else{
+			if($("input#thisMonth:checked").length == 0 && $("input#period:checked").length != 0){
+	          var query1={
+	     	 Date: {
                     "$gte": $("#pickdate1").val() ,
                     "$lte": $("#pickdate2").val()
                 }
-	   };
-	   var query2={
-	     { $orderBy: {date: -1}}
-	   };
-        var result=scoreCollection.find(query1,query2);
-          for(var i=0;i<scoreCollection.find(result).length;i++){
-            var score = "<tr><td>"+scoreCollection.find(result)[i].Subject+"</td><td>"+scoreCollection.find(result)[i].Date+"</td><td>"+scoreCollection.find(result)[i].Type+"</td><td>"+scoreCollection.find(result)[i].Score+"</td></tr>";
-            $("tbody").append(score);
-      	  }
-        }else{
-	  for(var i=0;i<scoreCollection.find({ $orderBy: {date: -1}}).length;i++){
-            var score = "<tr><td>"+scoreCollection.find(query)[i].Subject+"</td><td>"+scoreCollection.find(query)[i].Date+"</td><td>"+scoreCollection.find(query)[i].Type+"</td><td>"+scoreCollection.find(query)[i].Score+"</td></tr>";
-            $("tbody").append(score);
-      	  }
+	   		 };
+	   	      var query2={
+	      	 { $orderBy: {date: -1}}
+	   	   };
+              var result=scoreCollection.find(query1,query2);
+            for(var i=0;i<scoreCollection.find(result).length;i++){
+              var score = "<tr><td>"+scoreCollection.find(result)[i].Subject+"</td><td>"+scoreCollection.find(result)[i].Date+"</td><td>"+scoreCollection.find(result)[i].Type+"</td><td>"+scoreCollection.find(result)[i].Score+"</td></tr>";
+              $("tbody").append(score);
+      	    }
+		    switch(scoreCollection.find(query)[i].Subject){
+			case "國文" :
+				this.sum[0] += scoreCollection.find(query)[i].Score/1;
+				break;
+			case "英文" :
+				this sum[1] += scoreCollection.find(query)[i].Score/1;
+				break;
+			case "數學" :
+				this sum[2] += scoreCollection.find(query)[i].Score/1;
+				break;
+			case "電子學" :
+				this sum[3] += scoreCollection.find(query)[i].Score/1;
+				break;
+			case "基本電學" :
+				this.sum[4] += scoreCollection.find(query)[i].Score/1;
+				break;
+			case "基本電學實習" :
+				this.sum[5] += scoreCollection.find(query)[i].Score/1;
+				break;
+			default :
+				this.sum[6] += scoreCollection.find(query)[i].Score/1;
+				break;	
+		  }
+			totalScore += scoreCollection.find(query)[i].Score/1;
+			for(var i =0;i<sum.length;i++){  
+				var percent = "<tr><td>"+subject[i]+"</td><td>"+sum[i]+"</td><td>"+Math.floor((sum[i]/totalScore)*100)+"%</td></tr>";
+            	$("tbody#scorePercent").append(percent);
+			}
+            }else{
+	  		  for(var i=0;i<scoreCollection.find({ $orderBy: {date: -1}}).length;i++){
+            	var score = "<tr><td>"+scoreCollection.find(query)[i].Subject+"</td><td>"+scoreCollection.find(query)[i].Date+"</td><td>"+scoreCollection.find(query)[i].Type+"</td><td>"+scoreCollection.find(query)[i].Score+"</td></tr>";
+            	$("tbody").append(score);
+      	      }
+				switch(scoreCollection.find(query)[i].Subject){
+			case "國文" :
+				this.sum[0] += scoreCollection.find(query)[i].Score/1;
+				break;
+			case "英文" :
+				this sum[1] += scoreCollection.find(query)[i].Score/1;
+				break;
+			case "數學" :
+				this sum[2] += scoreCollection.find(query)[i].Score/1;
+				break;
+			case "電子學" :
+				this sum[3] += scoreCollection.find(query)[i].Score/1;
+				break;
+			case "基本電學" :
+				this.sum[4] += scoreCollection.find(query)[i].Score/1;
+				break;
+			case "基本電學實習" :
+				this.sum[5] += scoreCollection.find(query)[i].Score/1;
+				break;
+			default :
+				this.sum[6] += scoreCollection.find(query)[i].Score/1;
+				break;	
+		  }
+			totalScore += scoreCollection.find(query)[i].Score/1;
+			for(var i =0;i<sum.length;i++){  
+				var percent = "<tr><td>"+subject[i]+"</td><td>"+sum[i]+"</td><td>"+Math.floor((sum[i]/totalScore)*100)+"%</td></tr>";
+            	$("tbody#scorePercent").append(percent);
+			}
+		    }
+       }
 	}
-      }
       	
 	
       /*function scoreSearchSubject(){
