@@ -130,7 +130,7 @@
 						}
 					};//query
 					var query2={
-						{ $orderBy: {date: -1}}
+						 $orderBy: {date: -1}
 					};//queryvar
 					result=scoreCollection.find(query1,query2);
 					for(var i=0;i<scoreCollection.find(result).length;i++){
@@ -167,7 +167,7 @@
 			}//for
 			}else{
 				var query2={
-						{ $orderBy: {date: -1}}
+						 $orderBy: {date: -1}
 				};//queryvar
 				for(var i=0;i<scoreCollection.find(query2).length;i++){
 					var score = "<tr><td>"+scoreCollection.find(query2)[i].Subject+"</td><td>"+scoreCollection.find(query2)[i].Date+"</td><td>"+scoreCollection.find(query2)[i].Type+"</td><td>"+scoreCollection.find(query2)[i].Score+"</td></tr>";
@@ -203,25 +203,7 @@
 				}
 			}
 			}//function
-      	
-	
-      /*function scoreSearchSubject(){
-      	var query = {
-          Subject: $("#subjectName").val()
-      	};
-      	result = scoreCollection.find(query);
-      	$("tbody").text("");
-	$("table").show();
-      	for(var i = 0; i<result.length;i++){
-          var score = "<tr><td>"+scoreCollection.find(result)[i].Subject+"</td><td>"+scoreCollection.find(result)[i].Date+"</td><td>"+scoreCollection.find(result)[i].Type+"</td><td>"+scoreCollection.find(result)[i].Score+"</td></tr>";
-          $("tbody").append(score);
-        }
-      }
-      if($("#pickdate1").val()*1 != " "){*/
-        $("#search").on("click", scoreSearchDate);
-      //}else{
-	//$("#search").on("click", scoreSearchSubject);
-      //}
-    </script>
-  </body>
+			$("#search").on("click", scoreSearchDate);
+		</script>
+	</body>
 </html>
