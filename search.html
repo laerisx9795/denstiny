@@ -97,7 +97,8 @@
 					};//query
 					var query2={
 						 $orderBy: {date: -1}
-					var subjectVal = $("#subjectName").val();
+					};//queryvar
+					var subVal = $("#subjectName").val();
 					for(var i=0;i<scoreCollection.find(query,query1,query2,subjectVal).length;i++){
 						console.log("found");
 						var score = "<tr><td>"+scoreCollection.find(query,query1,query2,subjectVal)[i].Subject+"</td><td>"+scoreCollection.find(query,query1,query2,subjectVal)[i].Date+"</td><td>"+scoreCollection.find(query,query1,query2,subjectVal)[i].Type+"</td><td>"+scoreCollection.find(query,query1,query2,subjectVal)[i].Score+"</td></tr>";
@@ -133,8 +134,6 @@
 					}//for
 				//}
 				//if($("input#thisMonth:checked").length == 0 && $("input#period:checked").length != 0){
-					
-					};//queryvar
 					//result=scoreCollection.find(query1,query2);
 					//for(var i=0;i<scoreCollection.find(result).length;i++){
 						//console.log("found");
