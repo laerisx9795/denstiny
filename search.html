@@ -135,6 +135,7 @@
 					};//queryvar
 					result=scoreCollection.find(query1,query2);
 					for(var i=0;i<scoreCollection.find(result).length;i++){
+						console.log("found");
 						var score = "<tr><td>"+scoreCollection.find(result)[i].Subject+"</td><td>"+scoreCollection.find(result)[i].Date+"</td><td>"+scoreCollection.find(result)[i].Type+"</td><td>"+scoreCollection.find(result)[i].Score+"</td></tr>";
 						$("tbody").append(score);
 						/*switch(scoreCollection.find(result)[i].Subject){
@@ -166,37 +167,39 @@
 				var percent = "<tr><td>"+subject[i]+"</td><td>"+sum[i]+"</td><td>"+Math.floor((sum[i]/totalScore)*100)+"%</td></tr>";
 				$("tbody#scorePercent").append(percent);
 			}//for
-			}else{
+			}else if($("#subjectName").val() != " "){
 				var query2={
 						 $orderBy: {date: -1}
 				};//queryvar
-				for(var i=0;i<scoreCollection.find(query2).length;i++){
-					var score = "<tr><td>"+scoreCollection.find(query2)[i].Subject+"</td><td>"+scoreCollection.find(query2)[i].Date+"</td><td>"+scoreCollection.find(query2)[i].Type+"</td><td>"+scoreCollection.find(query2)[i].Score+"</td></tr>";
+				res=scoreCollection.find($("#subjectName").val(),query2)
+				for(var i=0;i<scoreCollection.find(res).length;i++){
+					console.log("found");
+					var score = "<tr><td>"+scoreCollection.find(res)[i].Subject+"</td><td>"+scoreCollection.find(res)[i].Date+"</td><td>"+scoreCollection.find(res)[i].Type+"</td><td>"+scoreCollection.find(res)[i].Score+"</td></tr>";
 					$("tbody").append(score);
-					/*switch(scoreCollection.find(query2)[i].Subject){
+					/*switch(scoreCollection.find(res)[i].Subject){
 						case "國文" :
-							this.sum[0] += scoreCollection.find(query2)[i].Score/1;
+							this.sum[0] += scoreCollection.find(res)[i].Score/1;
 							break;
 						case "英文" :
-							this.sum[1] += scoreCollection.find(query2)[i].Score/1;
+							this.sum[1] += scoreCollection.find(res)[i].Score/1;
 							break;
 						case "數學" :
-							this.sum[2] += scoreCollection.find(query2)[i].Score/1;
+							this.sum[2] += scoreCollection.find(res)[i].Score/1;
 							break;
 						case "電子學" :
-							this.sum[3] += scoreCollection.find(query2)[i].Score/1;
+							this.sum[3] += scoreCollection.find(res)[i].Score/1;
 							break;
 						case "基本電學" :
-							this.sum[4] += scoreCollection.find(query2)[i].Score/1;
+							this.sum[4] += scoreCollection.find(res)[i].Score/1;
 							break;
 						case "基本電學實習" :
-							this.sum[5] += scoreCollection.find(query2)[i].Score/1;
+							this.sum[5] += scoreCollection.find(res)[i].Score/1;
 							break;
 						default :
-							this.sum[6] += scoreCollection.find(query2)[i].Score/1;
+							this.sum[6] += scoreCollection.find(res)[i].Score/1;
 							break;
 										     }//switch
-					totalScore += scoreCollection.find(query2)[i].Score/1;*/
+					totalScore += scoreCollection.find(res)[i].Score/1;*/
 				}//for
 				for(var i =0;i<sum.length;i++){
 					var percent = "<tr><td>"+subject[i]+"</td><td>"+sum[i]+"</td><td>"+Math.floor((sum[i]/totalScore)*100)+"%</td></tr>";
