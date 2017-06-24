@@ -30,3 +30,16 @@ body {
     border-style:solid;
     border-color:#0066FF;
 }
+
+<style>
+    tr:nth-child(even) {
+	    background: #CCC
+    }
+    tr:nth-child(odd) {
+	    background-color: #FAFAFA;
+    }
+</style>
+
+td:hover {
+	background-color: #E6FBFF;
+}
