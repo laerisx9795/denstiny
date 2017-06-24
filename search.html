@@ -109,7 +109,7 @@
 				if($("input#thisMonth:checked").length != 0){
 					for(var i=0;i<scoreCollection.find(query).length;i++){
 						console.log("found");
-						var score = "<tr><td>"+scoreCollection.find(query)[i].Subject+"</td>&nbsp;&nbsp;<td>"+scoreCollection.find(query)[i].Date+"</td>&nbsp;&nbsp;<td>"+scoreCollection.find(query)[i].Type+"</td>&nbsp;&nbsp;<td>"+scoreCollection.find(query)[i].Score+"</td><button type='button' class='buttons' id='edit'>編輯</button><button type='button' class='buttons' id='delete'>刪除</button></tr>";
+						var score = "<tr><td>"+scoreCollection.find(query)[i].Subject+"</td>&nbsp;&nbsp;<td>"+scoreCollection.find(query)[i].Date+"</td>&nbsp;&nbsp;<td>"+scoreCollection.find(query)[i].Type+"</td>&nbsp;&nbsp;<td>"+scoreCollection.find(query)[i].Score+"</td><button type='button' class='buttons' id='edit'>編輯</button></td><td><button type='button' class='buttons' id='delete'>刪除</button></td></tr>";
 						$("tbody#scoreResult").append(score);
 						switch(scoreCollection.find(query)[i].Subject){
 							case "國文" :
@@ -148,7 +148,7 @@
 					//result=scoreCollection.find(query1,query2);
 					for(var i=0;i<scoreCollection.find(query1).length;i++){
 						console.log("found");
-						var score = "<tr><td>"+scoreCollection.find(query1)[i].Subject+"</td>&nbsp;&nbsp;<td>"+scoreCollection.find(query1)[i].Date+"</td>&nbsp;&nbsp;<td>"+scoreCollection.find(query1)[i].Type+"</td>&nbsp;&nbsp;<td>"+scoreCollection.find(query1)[i].Score+"</td><button type='button' class='buttons' id='edit'>編輯</button><button type='button' class='buttons' id='delete'>刪除</button></tr>";
+						var score = "<tr><td>"+scoreCollection.find(query1)[i].Subject+"</td>&nbsp;&nbsp;<td>"+scoreCollection.find(query1)[i].Date+"</td>&nbsp;&nbsp;<td>"+scoreCollection.find(query1)[i].Type+"</td>&nbsp;&nbsp;<td>"+scoreCollection.find(query1)[i].Score+"</td><td><td><button type='button' class='buttons' id='edit'>編輯</button></td><td><button type='button' class='buttons' id='delete'>刪除</button></td></tr>";
 						$("tbody#scoreResult").append(score);
 						switch(scoreCollection.find(query1)[i].Subject){
 							case "國文" :
@@ -185,7 +185,7 @@
 				}else{
 				for(var i=0;i<scoreCollection.find(subjectVal).length;i++){
 					console.log(subjectVal);
-					var score = "<tr><td>"+scoreCollection.find(subjectVal)[i].Subject+"</td>&nbsp;&nbsp;<td>"+scoreCollection.find(subjectVal)[i].Date+"</td>&nbsp;&nbsp;<td>"+scoreCollection.find(subjectVal)[i].Type+"</td>&nbsp;&nbsp;<td>"+scoreCollection.find(subjectVal)[i].Score+"</td><button type='button' class='buttons' id='edit'>編輯</button><button type='button' class='buttons' id='delete'>刪除</button></tr>";
+					var score = "<tr><td>"+scoreCollection.find(subjectVal)[i].Subject+"</td>&nbsp;&nbsp;<td>"+scoreCollection.find(subjectVal)[i].Date+"</td>&nbsp;&nbsp;<td>"+scoreCollection.find(subjectVal)[i].Type+"</td>&nbsp;&nbsp;<td>"+scoreCollection.find(subjectVal)[i].Score+"</td><td><button type='button' class='buttons' id='edit'>編輯</button></td><td><button type='button' class='buttons' id='delete'>刪除</button></td></tr>";
 					$("tbody#scoreResult").append(score);
 					switch(scoreCollection.find(subjectVal)[i].Subject){
 						case "國文" :
