@@ -35,7 +35,7 @@
 					<td>Score</td>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody id="scoreResult">
 			</tbody>
 		</table>
 		<table>
@@ -174,7 +174,7 @@
 				for(var i=0;i<scoreCollection.find(subjectVal).length;i++){
 					console.log("found");
 					var score = "<tr><td>"+scoreCollection.find(subjectVal)[i].Subject+"</td><td>"+scoreCollection.find(subjectVal)[i].Date+"</td><td>"+scoreCollection.find(subjectVal)[i].Type+"</td><td>"+scoreCollection.find(subjectVal)[i].Score+"</td></tr>";
-					$("tbody").append(score);
+					$("tbody#scoreResult").append(score);
 					switch(scoreCollection.find(subjectVal)[i].Subject){
 						case "國文" :
 							this.sum[0] += scoreCollection.find(subjectVal)[i].Score/1;
