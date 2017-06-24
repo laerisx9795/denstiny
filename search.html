@@ -136,7 +136,7 @@
 						var percent = "<tr><td>"+subject[i]+"</td><td>"+sum[i]+"</td><td>"+Math.floor((sum[i]/totalScore)*100)+"%</td></tr>";
 						$("tbody#scorePercent").append(percent);
 					}//for
-				}
+				}else{
 				if($("input#period:checked").length != 0 ){
 					//result=scoreCollection.find(query1,query2);
 					for(var i=0;i<scoreCollection.find(query1).length;i++){
@@ -175,7 +175,7 @@
 						var percent = "<tr><td>"+subject[i]+"</td><td>"+sum[i]+"</td><td>"+Math.floor((sum[i]/totalScore)*100)+"%</td></tr>";
 						$("tbody#scorePercent").append(percent);
 					}//for
-				}
+				}else{
 				if($("input#period:checked").length == 0 && $("input#thisMonth:checked").length == 0){
 				for(var i=0;i<scoreCollection.find(subjectVal).length;i++){
 					console.log(subjectVal);
@@ -212,6 +212,8 @@
 				for(var i =0;i<sum.length;i++){
 					var percent = "<tr><td>"+subject[i]+"</td><td>"+sum[i]+"</td><td>"+Math.floor((sum[i]/totalScore)*100)+"%</td></tr>";
 					$("tbody#scorePercent").append(percent);
+				}
+				}
 				}
 			}
 			}//function
