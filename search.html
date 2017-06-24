@@ -106,28 +106,28 @@
 						$("tbody#scoreResult").append(score);
 						switch(scoreCollection.find(query)[i].Subject){
 							case "國文" :
-								this.sum[0] += scoreCollection.find(query)[i].Score/1;
+								sum[0] += scoreCollection.find(query)[i].Score/1;
 								break;
 							case "英文" :
-								this.sum[1] += scoreCollection.find(query)[i].Score/1;
+								sum[1] += scoreCollection.find(query)[i].Score/1;
 								break;
 							case "數學" :
-								this.sum[2] += scoreCollection.find(query)[i].Score/1;
+								sum[2] += scoreCollection.find(query)[i].Score/1;
 								break;
 							case "電子學" :
-								this.sum[3] += scoreCollection.find(query)[i].Score/1;
+								sum[3] += scoreCollection.find(query)[i].Score/1;
 								break;
 							case "基本電學" :
-								this.sum[4] += scoreCollection.find(query)[i].Score/1;
+								sum[4] += scoreCollection.find(query)[i].Score/1;
 								break;
 							case "基本電學實習" :
-								this.sum[5] += scoreCollection.find(query)[i].Score/1;
+								sum[5] += scoreCollection.find(query)[i].Score/1;
 								break;
 							case "數位邏輯" :
-								this.sum[6] += scoreCollection.find(query)[i].Score/1;
+								sum[6] += scoreCollection.find(query)[i].Score/1;
 								break;
 							default :
-								this.sum[7] += scoreCollection.find(query)[i].Score/1;
+								sum[7] += scoreCollection.find(query)[i].Score/1;
 								break;
 											     }//switch
 						totalScore += scoreCollection.find(query)[i].Score/1;
