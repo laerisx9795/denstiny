@@ -24,7 +24,7 @@
 			<input type="text" class="inputs" id="pickdate1" readonly="readonly"/><h4>～</h4><input type="text" class="inputs" id="pickdate2" readonly="readonly"/>
 		</div>
 		<h4>Type:</h4>
-		<input type="text" class="inputs" id="type"/><br><br>
+		<!--<input type="text" class="inputs" id="type"/><br><br>-->
 		<button class="buttons" id="search">Search</button><br><br>
 		<table  style="border:3px #FFD382 dashed;">
 			<thead>
@@ -137,7 +137,7 @@
 						$("tbody#scorePercent").append(percent);
 					}//for
 				}
-				if($("input#period:checked").length != 0){
+				if($("input#period:checked").length != 0 ){
 					//result=scoreCollection.find(query1,query2);
 					for(var i=0;i<scoreCollection.find(query1).length;i++){
 						console.log("found");
@@ -176,7 +176,7 @@
 						$("tbody#scorePercent").append(percent);
 					}//for
 				}
-				if($("#subjectName").val() != 0){
+				if($("input#period:checked").length == 0 && $("input#thisMonth:checked").length == 0){
 				for(var i=0;i<scoreCollection.find(subjectVal).length;i++){
 					console.log("found");
 					var score = "<tr><td>"+scoreCollection.find(subjectVal)[i].Subject+"</td><td>"+scoreCollection.find(subjectVal)[i].Date+"</td><td>"+scoreCollection.find(subjectVal)[i].Type+"</td><td>"+scoreCollection.find(subjectVal)[i].Score+"</td></tr>";
