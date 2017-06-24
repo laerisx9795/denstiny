@@ -99,12 +99,12 @@
 					 $orderBy: {date: -1}
 				};//queryvar
 				var subjectVal = $("#subjectName").val();
-				/*if($("input#thisMonth:checked").length != 0){
+				if($("input#thisMonth:checked").length != 0){
 					for(var i=0;i<scoreCollection.find(query).length;i++){
 						console.log("found");
 						var score = "<tr><td>"+scoreCollection.find(query)[i].Subject+"</td><td>"+scoreCollection.find(query)[i].Date+"</td><td>"+scoreCollection.find(query)[i].Type+"</td><td>"+scoreCollection.find(query)[i].Score+"</td></tr>";
-						$("tbody").append(score);
-						switch(scoreCollection.find(query)[i].Subject){
+						$("tbody#scoreResult").append(score);
+						/*switch(scoreCollection.find(query)[i].Subject){
 							case "國文" :
 								this.sum[0] += scoreCollection.find(query)[i].Score/1;
 								break;
@@ -127,14 +127,14 @@
 								this.sum[6] += scoreCollection.find(query)[i].Score/1;
 								break;
 											     }//switch
-						totalScore += scoreCollection.find(query)[i].Score/1;
+						totalScore += scoreCollection.find(query)[i].Score/1;*/
 					}//for
-					for(var i =0;i<sum.length;i++){
+					/*for(var i =0;i<sum.length;i++){
 						var percent = "<tr><td>"+subject[i]+"</td><td>"+sum[i]+"</td><td>"+Math.floor((sum[i]/totalScore)*100)+"%</td></tr>";
 						$("tbody#scorePercent").append(percent);
-					}//for
+					}//for*/
 				}
-				if($("input#period:checked").length != 0){
+				/*if($("input#period:checked").length != 0){
 					//result=scoreCollection.find(query1,query2);
 					for(var i=0;i<scoreCollection.find(query1).length;i++){
 						console.log("found");
@@ -171,11 +171,11 @@
 					}//for
 				}
 				if($("#subjectName").val().length != 0){*/
-				for(var i=0;i<scoreCollection.find(subjectVal).length;i++){
+				/*for(var i=0;i<scoreCollection.find(subjectVal).length;i++){
 					console.log("found");
 					var score = "<tr><td>"+scoreCollection.find(subjectVal)[i].Subject+"</td><td>"+scoreCollection.find(subjectVal)[i].Date+"</td><td>"+scoreCollection.find(subjectVal)[i].Type+"</td><td>"+scoreCollection.find(subjectVal)[i].Score+"</td></tr>";
 					$("tbody#scoreResult").append(score);
-					/*switch(scoreCollection.find(subjectVal)[i].Subject){
+					switch(scoreCollection.find(subjectVal)[i].Subject){
 						case "國文" :
 							this.sum[0] += scoreCollection.find(subjectVal)[i].Score/1;
 							break;
