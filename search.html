@@ -178,7 +178,7 @@
 				}
 				if($("input#period:checked").length == 0 && $("input#thisMonth:checked").length == 0){
 				for(var i=0;i<scoreCollection.find(subjectVal).length;i++){
-					console.log("found");
+					console.log(subjectVal);
 					var score = "<tr><td>"+scoreCollection.find(subjectVal)[i].Subject+"</td><td>"+scoreCollection.find(subjectVal)[i].Date+"</td><td>"+scoreCollection.find(subjectVal)[i].Type+"</td><td>"+scoreCollection.find(subjectVal)[i].Score+"</td></tr>";
 					$("tbody#scoreResult").append(score);
 					switch(scoreCollection.find(subjectVal)[i].Subject){
