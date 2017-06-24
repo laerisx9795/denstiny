@@ -55,6 +55,30 @@
 			</tbody>
 		</table>
 		<br><br><br><br>
+		<div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel4">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="btn btn-info" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="myModalLabel4"><a href="#">Edit</a><!--Modal title--></h4>
+					</div>
+					<div class="modal-body">
+						<h4>Subject</h4>
+						<input type="text" id="subjectEdit"/>
+						<h4>Test Date</h4>
+						<input type="text" id="dateEdit"/>
+						<h4>Type</h4>
+						<input type="text" id="typeEdit"/>
+						<h4>Score</h4>
+						<input type="text" id="scoreEdit"/>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary" id="save" value='Display a confirm box'>Save</button>
+					</div>
+				</div>
+			</div>
+		</div>
 		<button class="buttons" id="home"><a href="index.html">Go Back to Home</a></button>  
 		<script>
 			$("#pickdate1").dateDropper({
@@ -63,6 +87,11 @@
 				maxYear: '2020'
 			});
 			$("#pickdate2").dateDropper({
+				animate: false,
+				format: 'Y-m-d',
+				maxYear: '2020'
+			});
+			$("#dateEdit").dateDropper({
 				animate: false,
 				format: 'Y-m-d',
 				maxYear: '2020'
@@ -79,6 +108,7 @@
 				var subject=["國文","英文","數學","電子學","基本電學","基本電學實習","數位邏輯","其他"];
 				var totalScore =0;
 				var query;
+				var deleteDataId;
 				//if($("input#thisMonth:checked").length != 0 && $("input#period:checked").length == 0){
 				var date = new Date();
 				var month = date.getMonth()+1;
@@ -140,7 +170,7 @@
 						totalScore += scoreCollection.find(query)[i].Score/1;
 					}//for
 					for(var i =0;i<sum.length;i++){
-						var percent = "<tr><td>"+subject[i]+"</td>&nbsp;&nbsp;<td>"+sum[i]+"</td>&nbsp;&nbsp;<td>"+Math.floor((sum[i]/totalScore)*100)+"%</td></tr>";
+						var percent = "<tr><td>"+subject[i]+"</td><td>"+sum[i]+"</td><td>"+Math.floor((sum[i]/totalScore)*100)+"%</td></tr>";
 						$("tbody#scorePercent").append(percent);
 					}//for
 				}else{
@@ -179,7 +209,7 @@
 						totalScore += scoreCollection.find(query1)[i].Score/1;
 					}//for
 					for(var i =0;i<sum.length;i++){
-						var percent = "<tr><td>"+subject[i]+"</td>&nbsp;&nbsp;<td>"+sum[i]+"</td>&nbsp;&nbsp;<td>"+Math.floor((sum[i]/totalScore)*100)+"%</td></tr>";
+						var percent = "<tr><td>"+subject[i]+"</td><td>"+sum[i]+"</td><td>"+Math.floor((sum[i]/totalScore)*100)+"%</td></tr>";
 						$("tbody#scorePercent").append(percent);
 					}//for
 				}else{
@@ -216,13 +246,50 @@
 					totalScore += scoreCollection.find(subjectVal)[i].Score/1;
 				}//for
 				for(var i =0;i<sum.length;i++){
-					var percent = "<tr><td>"+subject[i]+"</td>&nbsp;&nbsp;<td>"+sum[i]+"</td>&nbsp;&nbsp;<td>"+Math.floor((sum[i]/totalScore)*100)+"%</td></tr>";
+					var percent = "<tr><td>"+subject[i]+"</td><td>"+sum[i]+"</td><td>"+Math.floor((sum[i]/totalScore)*100)+"%</td></tr>";
 					$("tbody#scorePercent").append(percent);
 				}
 				}
 			}
 			}//function
 			$("#search").on("click", scoreSearchDate);
+			function scoreDelete(){
+				deleteDataId=$(this).data("id");
+				var r=confirm("你確定要刪除嗎？")
+				if (r==true){
+					scoreCollection.remove({
+						_id: deleteDataId
+					});
+					scoreCollection.save();
+				}
+			}
+			$("body").on("click","#delete",scoreDelete);
+			//$("body").on("click","#BT4",haroShow);
+			function scoreEdit(){
+				editDataId=$(this).data("id");
+				var query3 = {
+					_id: editDataId
+				};
+				$("input#subjectEdit").val(scoreCollection.find(query3)[0].Subject);
+				$("input#dateEdit").val(scoreCollection.find(query3)[0].Date);
+				$("input#typeEdit").val(scoreCollection.find(query3)[0].Type);
+				$("input#scoreEdit").val(scoreCollection.find(query3)[0].Score);
+			}
+			$("#scoreResult").on("click","#edit",scoreEdit);
+			function scoreSave(){
+				var e=confirm("你確定要編輯嗎？")
+				if(e){
+					var newData = {
+						Subject:$("input#subjectEdit").val(),
+						Date:$("input#dateEdit").val(),
+						Type:$("input#typeEdit").val(),
+						Score:$("input#scoreEdit").val(),
+					};
+					scoreCollection.updateById(editDataId,newData);
+					scoreCollection.save();
+				}
+			}
+			$("body").on("click","#save",scoreSave);
 		</script>
 	</body>
 </html>
