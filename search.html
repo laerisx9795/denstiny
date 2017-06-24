@@ -170,7 +170,7 @@
 						$("tbody#scorePercent").append(percent);
 					}//for
 				}
-				if($("#subjectName").val() != " "){
+				if($("#subjectName").val().length != 0){
 				for(var i=0;i<scoreCollection.find(subjectVal).length;i++){
 					console.log("found");
 					var score = "<tr><td>"+scoreCollection.find(subjectVal)[i].Subject+"</td><td>"+scoreCollection.find(subjectVal)[i].Date+"</td><td>"+scoreCollection.find(subjectVal)[i].Type+"</td><td>"+scoreCollection.find(subjectVal)[i].Score+"</td></tr>";
