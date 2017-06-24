@@ -137,7 +137,7 @@
 						$("tbody#scorePercent").append(percent);
 					}//for
 				}
-				/*if($("input#period:checked").length != 0){
+				if($("input#period:checked").length != 0){
 					//result=scoreCollection.find(query1,query2);
 					for(var i=0;i<scoreCollection.find(query1).length;i++){
 						console.log("found");
@@ -145,25 +145,28 @@
 						$("tbody").append(score);
 						switch(scoreCollection.find(query1)[i].Subject){
 							case "國文" :
-								this.sum[0] += scoreCollection.find(query1)[i].Score/1;
+								sum[0] += scoreCollection.find(query1)[i].Score/1;
 								break;
 							case "英文" :
-								this.sum[1] += scoreCollection.find(query1)[i].Score/1;
+								sum[1] += scoreCollection.find(query1)[i].Score/1;
 								break;
 							case "數學" :
-								this.sum[2] += scoreCollection.find(query1)[i].Score/1;
+								sum[2] += scoreCollection.find(query1)[i].Score/1;
 								break;
 							case "電子學" :
-								this.sum[3] += scoreCollection.find(query1)[i].Score/1;
+								sum[3] += scoreCollection.find(query1)[i].Score/1;
 								break;
 							case "基本電學" :
-								this.sum[4] += scoreCollection.find(query1)[i].Score/1;
+								sum[4] += scoreCollection.find(query1)[i].Score/1;
 								break;
 							case "基本電學實習" :
-								this.sum[5] += scoreCollection.find(query1)[i].Score/1;
+								sum[5] += scoreCollection.find(query1)[i].Score/1;
+								break;
+							case "數位邏輯" :
+								sum[6] += scoreCollection.find(query1)[i].Score/1;
 								break;
 							default :
-								this.sum[6] += scoreCollection.find(query1)[i].Score/1;
+								sum[7] += scoreCollection.find(query1)[i].Score/1;
 								break;
 											     }//switch
 						totalScore += scoreCollection.find(query1)[i].Score/1;
@@ -173,41 +176,44 @@
 						$("tbody#scorePercent").append(percent);
 					}//for
 				}
-				if($("#subjectName").val().length != 0){*/
-				/*for(var i=0;i<scoreCollection.find(subjectVal).length;i++){
+				if($("#subjectName").val() != 0){
+				for(var i=0;i<scoreCollection.find(subjectVal).length;i++){
 					console.log("found");
 					var score = "<tr><td>"+scoreCollection.find(subjectVal)[i].Subject+"</td><td>"+scoreCollection.find(subjectVal)[i].Date+"</td><td>"+scoreCollection.find(subjectVal)[i].Type+"</td><td>"+scoreCollection.find(subjectVal)[i].Score+"</td></tr>";
 					$("tbody#scoreResult").append(score);
 					switch(scoreCollection.find(subjectVal)[i].Subject){
 						case "國文" :
-							this.sum[0] += scoreCollection.find(subjectVal)[i].Score/1;
+							sum[0] += scoreCollection.find(subjectVal)[i].Score/1;
 							break;
 						case "英文" :
-							this.sum[1] += scoreCollection.find(subjectVal)[i].Score/1;
+							sum[1] += scoreCollection.find(subjectVal)[i].Score/1;
 							break;
 						case "數學" :
-							this.sum[2] += scoreCollection.find(subjectVal)[i].Score/1;
+							sum[2] += scoreCollection.find(subjectVal)[i].Score/1;
 							break;
 						case "電子學" :
-							this.sum[3] += scoreCollection.find(subjectVal)[i].Score/1;
+							sum[3] += scoreCollection.find(subjectVal)[i].Score/1;
 							break;
 						case "基本電學" :
-							this.sum[4] += scoreCollection.find(subjectVal)[i].Score/1;
+							sum[4] += scoreCollection.find(subjectVal)[i].Score/1;
 							break;
 						case "基本電學實習" :
-							this.sum[5] += scoreCollection.find(subjectVal)[i].Score/1;
+							sum[5] += scoreCollection.find(subjectVal)[i].Score/1;
+							break;
+						case "數位邏輯" :
+							sum[6] += scoreCollection.find(subjectVal)[i].Score/1;
 							break;
 						default :
-							this.sum[6] += scoreCollection.find(subjectVal)[i].Score/1;
+							sum[7] += scoreCollection.find(subjectVal)[i].Score/1;
 							break;
-										     }//switch*/
-					//totalScore += scoreCollection.find(subjectVal)[i].Score/1;
-				//}//for
-				/*for(var i =0;i<sum.length;i++){
+										     }//switch
+					totalScore += scoreCollection.find(subjectVal)[i].Score/1;
+				}//for
+				for(var i =0;i<sum.length;i++){
 					var percent = "<tr><td>"+subject[i]+"</td><td>"+sum[i]+"</td><td>"+Math.floor((sum[i]/totalScore)*100)+"%</td></tr>";
 					$("tbody#scorePercent").append(percent);
-				}*/
-			//}
+				}
+			}
 			}//function
 			$("#search").on("click", scoreSearchDate);
 		</script>
