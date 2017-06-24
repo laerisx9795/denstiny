@@ -98,7 +98,9 @@
 				var query2={
 					 $orderBy: {date: -1}
 				};//queryvar
-				var subjectVal = $("#subjectName").val();
+				var subjectVal ={
+					Subject:$("#subjectName").val()
+				};
 				if($("input#thisMonth:checked").length != 0){
 					for(var i=0;i<scoreCollection.find(query).length;i++){
 						console.log("found");
