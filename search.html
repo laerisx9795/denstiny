@@ -90,6 +90,7 @@
 						}
 					};//query
 					for(var i=0;i<scoreCollection.find(query).length;i++){
+						console.log("found");
 						var score = "<tr><td>"+scoreCollection.find(query)[i].Subject+"</td><td>"+scoreCollection.find(query)[i].Date+"</td><td>"+scoreCollection.find(query)[i].Type+"</td><td>"+scoreCollection.find(query)[i].Score+"</td></tr>";
 						$("tbody").append(score);
 						/*switch(scoreCollection.find(query)[i].Subject){
